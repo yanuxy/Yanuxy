@@ -1,10 +1,16 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Memuat data novel dari file JSON
-    fetch('data/novel.json')
+    const urlParams = new URLSearchParams(window.location.search);
+    const novelId = urlParams.get('novel');
+
+    if (!novelId) {
+        window.location.href = 'index.html';
+        return;
+    }
+
+    fetch(`data/novels/${novelId}.json`)
         .then(response => response.json())
         .then(data => {
-            // Update informasi novel di halaman
-            document.title = data.title;
+            document.title = `${data.title} - Detail Novel`;
             document.getElementById('novel-title').textContent = data.title;
             document.getElementById('novel-display-title').textContent = data.title;
             document.getElementById('novel-author').textContent = `Penulis: ${data.author}`;
@@ -14,20 +20,19 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('novel-status').textContent = `Status: ${data.status}`;
             document.getElementById('footer-author').textContent = data.author;
 
-            // Render daftar bab
             const chapterList = document.getElementById('chapter-list');
-            chapterList.innerHTML = ''; // Bersihkan loading text
+            chapterList.innerHTML = '';
 
             data.chapters.forEach((chapter, index) => {
                 const chapterLink = document.createElement('a');
-                chapterLink.href = `read.html?id=${chapter.id}`;
+                chapterLink.href = `read.html?novel=${novelId}&id=${chapter.id}`;
                 chapterLink.className = 'chapter-item';
                 chapterLink.innerHTML = `<strong>Bab ${index + 1}</strong><br>${chapter.title}`;
                 chapterList.appendChild(chapterLink);
             });
         })
         .catch(error => {
-            console.error('Error loading novel data:', error);
-            document.getElementById('chapter-list').innerHTML = '<p>Gagal memuat daftar bab. Pastikan file data/novel.json ada.</p>';
+            console.error('Error loading novel detail:', error);
+            document.getElementById('chapter-list').innerHTML = `<p>Gagal memuat detail novel. Pastikan file data/novels/${novelId}.json sudah ada.</p>`;
         });
 });
