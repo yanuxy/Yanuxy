@@ -1,0 +1,10 @@
+[
+    {
+        "id": "novel-pertama-saya",
+        "title": "Judul Novel Pertama Saya",
+        "author": "Nama Penulis",
+        "cover": "https://via.placeholder.com/400x600?text=Cover+Novel",
+        "status": "Ongoing",
+        "description": "Tuliskan deskripsi singkat novel Anda di sini untuk ditampilkan di katalog."
+    }
+]
