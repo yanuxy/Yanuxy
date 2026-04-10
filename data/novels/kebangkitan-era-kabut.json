@@ -3,7 +3,7 @@
     "title": "kebangkitan era kabut",
     "author": "Qian Jayadharma",
     "description": "menceritakan seorang pemuda bernama kaelan arga yang mewarisi kemampuan dari sukunya dari zaman kuno.",
-    "cover":
+    "cover": "data/list.json",
     "img": "assets/kebangkitan era kabut.jpg",
     "status": "Ongoing",
     "chapters": [
