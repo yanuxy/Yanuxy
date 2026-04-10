@@ -8,11 +8,10 @@
         "description": "Tuliskan deskripsi singkat novel Anda di sini untuk ditampilkan di katalog."
     },
     {
-        "id": "kebangkitan-era-kabut",
-        "title": "Judul Kebangkitan Era Kabut",
+        "id": "data/novels/kebangkitan-era-kabut.json",
+        "title": "Kebangkitan Era Kabut",
         "author": "Qian Jayadharma",
-        "cover": "data/novels/kebangkitan-era-kabut.json",
-        "img": "assets/kebangkitan era kabut.jpg",
+        "cover": "assets/kebangkitan era kabut.jpg",
         "status": "Ongoing",
         "description": "Kisah tentang pengkhianatan dan perjuangan di balik senyuman yang tenang."
     },
