@@ -11,7 +11,8 @@
         "id": "kebangkitan-era-kabut",
         "title": "Judul Kebangkitan Era Kabut",
         "author": "Qian Jayadharma",
-        "cover": "assets/kebangkitan era kabut.jpg",
+        "cover": "data/novels/kebangkitan-era-kabut.json",
+        "img": "assets/kebangkitan era kabut.jpg",
         "status": "Ongoing",
         "description": "Kisah tentang pengkhianatan dan perjuangan di balik senyuman yang tenang."
     },
