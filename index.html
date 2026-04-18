@@ -14,7 +14,7 @@
         }
 
         body { 
-            font-family: 'Segoe UI', sans-serif; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
             background-color: var(--bg); 
             margin: 0; padding: 0; 
             color: var(--text-main); 
@@ -29,7 +29,7 @@
             margin-bottom: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.5);
         }
 
-        /* Grid Kotak Utama */
+        /* HALAMAN UTAMA: GRID KOTAK */
         .book-grid { 
             display: grid; 
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
@@ -40,7 +40,6 @@
             background: var(--card-bg); 
             border-radius: 15px; 
             overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
             border: 1px solid #333;
             display: flex;
             flex-direction: column;
@@ -48,42 +47,67 @@
         }
         .book-card:hover { transform: translateY(-10px); }
 
-        /* Bagian Atas: Kategori */
-        .card-header { padding: 20px 20px 10px 20px; }
-        .category-badge { 
-            display: inline-block; background: #2c3e50; color: #3498db; 
-            font-size: 0.7rem; padding: 4px 12px; border-radius: 15px; 
-            font-weight: bold; text-transform: uppercase; margin-bottom: 5px;
-        }
-        .card-header h2 { margin: 5px 0; font-size: 1.5rem; }
+        .card-header { padding: 25px 20px 15px 20px; }
+        .card-header h2 { margin: 0; font-size: 1.6rem; color: #fff; }
 
-        /* Bagian Tengah: Gambar */
-        .card-image img {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-            display: block;
+        .card-image-main img {
+            width: 100%; height: 160px; object-fit: cover; display: block;
+            border-top: 1px solid #333; border-bottom: 1px solid #333;
         }
 
-        /* Bagian Bawah: Tombol */
-        .card-footer { padding: 15px 20px 20px 20px; }
         .btn-action {
-            display: block; width: 100%; padding: 12px;
+            display: block; width: 100%; padding: 18px;
             background: var(--accent); color: white; border: none;
-            border-radius: 8px; font-weight: bold; cursor: pointer;
-            font-size: 1rem; transition: 0.3s;
+            font-weight: bold; cursor: pointer; font-size: 1.1rem;
         }
-        .btn-action:hover { background: #2980b9; }
 
-        /* Tampilan List */
-        #halaman-list { display: none; }
-        .list-container { background: var(--card-bg); border-radius: 15px; padding: 30px; border: 1px solid #333; }
-        .list-item { display: flex; justify-content: space-between; align-items: center; padding: 15px; border-bottom: 1px solid #333; }
-        .list-item a { color: var(--accent); text-decoration: none; font-weight: bold; }
-        .btn-back { background: #444; color: white; padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer; margin-bottom: 20px; }
+        /* HALAMAN LIST (SETELAH KLIK JELAJAHI) */
+        #halaman-list { 
+            display: none; 
+            max-width: 800px; 
+            margin: 0 auto; 
+            background-color: #000;
+            min-height: 100vh;
+        }
+        
+        .list-container {
+            background: #1a1a1a;
+            border-radius: 15px;
+            border: 1px solid #333;
+            overflow: hidden;
+        }
 
-        footer { text-align: center; padding: 60px 20px; color: #888; font-size: 0.9rem; border-top: 1px solid #222; }
-        .footer-links a { color: var(--accent); text-decoration: none; margin: 0 10px; }
+        .list-header { 
+            padding: 30px; 
+            text-align: center; 
+            border-bottom: 1px solid #333; 
+        }
+
+        .list-item { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 20px; 
+            border-bottom: 1px solid #222; 
+        }
+        .list-item:last-child { border-bottom: none; }
+        
+        .btn-download {
+            background: var(--accent);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .btn-back { 
+            background: #333; color: white; padding: 12px 24px; 
+            border: 1px solid #444; border-radius: 8px; cursor: pointer; margin-bottom: 25px; 
+        }
+
+        footer { text-align: center; padding: 60px 20px; color: #888; border-top: 1px solid #222; margin-top: 50px; }
     </style>
 </head>
 <body>
@@ -94,98 +118,5 @@
 </header>
 
 <div class="container">
-    <div id="halaman-utama" class="book-grid">
-        </div>
-
-    <div id="halaman-list">
-        <button class="btn-back" onclick="kembali()">← Kembali</button>
-        <div class="list-container">
-            <h2 id="judul-kat">Daftar Buku</h2>
-            <div id="daftar-isi"></div>
-        </div>
-    </div>
-</div>
-
-<footer>
-    <p>© 2026 Perpustakaan Yanuxy. Website ini dibuat untuk tujuan edukasi.</p>
-    <div class="footer-links">
-        <a href="https://yanuxynovel.github.io" target="_blank">Website</a> | 
-        <a href="#" target="_blank">YouTube</a> | 
-        <a href="#" target="_blank">Facebook</a> | 
-        <a href="mailto:emailkamu@gmail.com">Gmail</a>
-    </div>
-</footer>
-
-<script>
-    const dataPerpustakaan = [
-        { 
-            nama: "Novel", 
-            gambar: "https://via.placeholder.com/300x180/1e1e1e/3498db?text=Novel+Cover", 
-            buku: [
-                { judul: "Sistem Kekayaan 1", link: "LINK_PDF_1" },
-                { judul: "Sang Penyihir Terakhir", link: "LINK_PDF_2" }
-            ]
-        },
-        { 
-            nama: "Programming", 
-            gambar: "https://via.placeholder.com/300x180/1e1e1e/3498db?text=Coding+Book", 
-            buku: [
-                { judul: "Belajar JavaScript", link: "LINK_PDF_3" }
-            ]
-        },
-        { 
-            nama: "Finansial", 
-            gambar: "https://via.placeholder.com/300x180/1e1e1e/3498db?text=Finance+Book", 
-            buku: [
-                { judul: "Investasi Emas", link: "LINK_PDF_4" }
-            ]
-        }
-    ];
-
-    function renderUtama() {
-        const container = document.getElementById('halaman-utama');
-        container.innerHTML = '';
-        dataPerpustakaan.forEach((kat, index) => {
-            container.innerHTML += `
-                <div class="book-card">
-                    <div class="card-header">
-                        <span class="category-badge">Ebook</span>
-                        <h2>${kat.nama}</h2>
-                    </div>
-                    <div class="card-image">
-                        <img src="${kat.gambar}" alt="${kat.nama}">
-                    </div>
-                    <div class="card-footer">
-                        <button class="btn-action" onclick="jelajahi(${index})">Jelajahi</button>
-                    </div>
-                </div>
-            `;
-        });
-    }
-
-    function jelajahi(index) {
-        const kat = dataPerpustakaan[index];
-        document.getElementById('halaman-utama').style.display = 'none';
-        document.getElementById('halaman-list').style.display = 'block';
-        document.getElementById('judul-kat').innerText = "Daftar " + kat.nama;
+    <div id="halaman-
         
-        const isi = document.getElementById('daftar-isi');
-        isi.innerHTML = '';
-        kat.buku.forEach(b => {
-            isi.innerHTML += `
-                <div class="list-item">
-                    <span>${b.judul}</span>
-                    <a href="${b.link}" target="_blank">Buka PDF</a>
-                </div>`;
-        });
-    }
-
-    function kembali() {
-        document.getElementById('halaman-utama').style.display = 'grid';
-        document.getElementById('halaman-list').style.display = 'none';
-    }
-
-    renderUtama();
-</script>
-</body>
-</html>
