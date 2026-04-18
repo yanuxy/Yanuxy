@@ -4,14 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perpustakaan Digital Yanuxy</title>
-    <style>
+      <style>
         :root {
-            --primary: #2c3e50;
-            --accent: #3498db;
-            --bg: #f8f9fa;
-            --card-bg: #ffffff;
+            --primary: #1a1a1a;    /* Hitam gelap untuk header */
+            --accent: #3498db;     /* Biru tetap untuk tombol */
+            --bg: #121212;         /* Hitam pekat untuk background utama */
+            --card-bg: #1e1e1e;    /* Abu-abu sangat gelap untuk kotak buku */
+            --text-main: #ffffff;  /* Putih untuk teks utama */
+            --text-muted: #b0b0b0; /* Abu-abu terang untuk teks tambahan */
         }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--bg); margin: 0; padding: 0; color: #333; }
+        
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background-color: var(--bg); 
+            margin: 0; padding: 0; 
+            color: var(--text-main); 
+        }
+        
         .container { max-width: 1100px; margin: auto; padding: 20px; }
         
         header { 
@@ -22,79 +31,53 @@
             border-bottom-left-radius: 50px;
             border-bottom-right-radius: 50px;
             margin-bottom: 40px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
         }
-        header h1 { margin: 0; font-size: 2.5rem; letter-spacing: 1px; }
-        header p { opacity: 0.9; font-size: 1.1rem; margin-top: 10px; }
 
         /* Search & Filter */
-        .controls { text-align: center; margin-bottom: 40px; }
         .search-bar {
             padding: 12px 20px;
             width: 80%;
             max-width: 500px;
-            border: 2px solid #ddd;
+            border: 2px solid #333;
+            background-color: #252525;
+            color: white;
             border-radius: 25px;
             margin-bottom: 20px;
             outline: none;
-            transition: 0.3s;
-            font-size: 1rem;
         }
-        .search-bar:focus { border-color: var(--accent); box-shadow: 0 0 8px rgba(52, 152, 219, 0.3); }
 
-        .filter-group { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; }
         .filter-btn { 
-            padding: 10px 20px; border: none; background: white; 
-            color: var(--primary); cursor: pointer; border-radius: 20px;
-            transition: 0.3s; box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            font-weight: 600;
+            padding: 10px 20px; border: none; 
+            background: #252525; 
+            color: white; cursor: pointer; border-radius: 20px;
+            transition: 0.3s; box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
         .filter-btn.active, .filter-btn:hover { background: var(--accent); color: white; }
 
         /* Grid Buku */
-        .book-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
-            gap: 25px; 
-        }
         .book-card { 
             background: var(--card-bg); 
             border-radius: 15px; 
-            overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            border: 1px solid #eee;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            border: 1px solid #333;
         }
-        .book-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
-        .book-info { padding: 25px; flex-grow: 1; }
+        .book-info h3 { color: var(--text-main); }
         .category-badge { 
-            font-size: 0.7rem; 
-            text-transform: uppercase; 
-            background: #e1f5fe; 
-            color: #0288d1; 
-            padding: 4px 12px; 
-            border-radius: 15px;
-            font-weight: bold;
-            letter-spacing: 0.5px;
+            background: #2c3e50; 
+            color: #3498db; 
         }
-        .book-info h3 { margin: 15px 0 10px 0; font-size: 1.25rem; color: #2c3e50; line-height: 1.4; }
         
         .btn-action {
-            display: block;
-            text-align: center;
-            padding: 15px;
             background: var(--accent);
             color: white;
-            text-decoration: none;
-            font-weight: bold;
-            transition: 0.3s;
+            border-bottom-left-radius: 15px;
+            border-bottom-right-radius: 15px;
         }
-        .btn-action:hover { background: #2980b9; }
 
-        footer { text-align: center; padding: 60px 20px; color: #888; font-size: 0.9rem; }
-    <style>
+        footer { color: #555; }
+      </style>
+    
         :root {
             --primary: #1a1a1a;    /* Hitam gelap untuk header */
             --accent: #3498db;     /* Biru tetap untuk tombol */
