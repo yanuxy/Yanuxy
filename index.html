@@ -190,28 +190,23 @@
        Pastikan link Google Drive sudah diatur ke "Anyone with the link".
     */
     const databaseBuku = [
-        { 
-            judul: "Sistem Kekayaan 1", 
-            kategori: "Novel", 
-            link: "MASUKKAN_LINK_DARI_GOOGLE_DRIVE_DISINI" 
-        },
-        { 
-            judul: "Panduan Belajar Python", 
-            kategori: "Programming", 
-            link: "#" 
-        },
-        { 
-            judul: "Keuangan untuk Millennial", 
-            kategori: "Finansial", 
-            link: "#" 
-        },
-        { 
-            judul: "Sang Penyihir Terakhir", 
-            kategori: "Novel", 
-            link: "#" 
-        }
-    ];
-
+    { 
+        judul: "Koleksi Novel", 
+        kategori: "Novel", 
+        link: "LINK_FOLDER_GOOGLE_DRIVE_NOVEL" // Masukkan link folder Google Drive di sini
+    },
+    { 
+        judul: "Koleksi Programming", 
+        kategori: "Programming", 
+        link: "LINK_FOLDER_GOOGLE_DRIVE_PROG" 
+    },
+    { 
+        judul: "Koleksi Finansial", 
+        kategori: "Finansial", 
+        link: "LINK_FOLDER_GOOGLE_DRIVE_FIN" 
+    }
+];
+    
     let currentFilter = 'Semua';
 
     function renderBooks(booksToDisplay) {
