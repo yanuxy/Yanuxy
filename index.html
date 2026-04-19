@@ -5,170 +5,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perpustakaan Yanuxy</title>
     <style>
-        :root {
-            --bg: #000000;
-            --card-bg: #1a1a1a;
-            --accent: #3498db;
-            --text: #ffffff;
-        }
-
-        body { 
-            font-family: 'Segoe UI', Tahoma, sans-serif; 
-            background-color: var(--bg); 
-            color: var(--text); 
-            margin: 0; padding: 0; 
-        }
-
+        :root { --bg: #000000; --card-bg: #1a1a1a; --accent: #3498db; --text: #ffffff; }
+        body { font-family: 'Segoe UI', sans-serif; background-color: var(--bg); color: var(--text); margin: 0; padding: 0; }
         .container { max-width: 1100px; margin: auto; padding: 20px; }
-
         header { text-align: center; padding: 40px 20px; border-bottom: 1px solid #222; }
 
-        /* --- GRID SISTEM --- */
-        .grid-layout { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
-            gap: 25px; 
-            margin-top: 20px;
-        }
+        /* GRID SISTEM */
+        .grid-layout { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; margin-top: 20px; }
 
-        /* --- 1. HALAMAN UTAMA (3 BAGIAN) --- */
-        .cat-card { 
-            background: var(--card-bg); 
-            border-radius: 15px; 
-            overflow: hidden; 
-            border: 1px solid #333;
-            display: flex; flex-direction: column;
-        }
-        .cat-top { padding: 20px; text-align: center; font-weight: bold; font-size: 1.4rem; }
-        .cat-mid img { width: 100%; height: 180px; object-fit: cover; display: block; }
-        .cat-bot { padding: 0; }
+        /* KOTAK KATEGORI & BUKU (3 BAGIAN) */
+        .card { background: var(--card-bg); border-radius: 15px; overflow: hidden; border: 1px solid #333; display: flex; flex-direction: column; }
+        .card-top { padding: 15px; text-align: center; font-weight: bold; font-size: 1.2rem; }
+        .card-mid img { width: 100%; height: 200px; object-fit: cover; display: block; }
+        .btn-blue { display: block; width: 100%; padding: 15px; background: var(--accent); color: white; border: none; font-weight: bold; cursor: pointer; font-size: 1rem; text-decoration: none; text-align: center; }
 
-        /* --- 2. HALAMAN KATEGORI (3 BAGIAN) --- */
-        .book-card { 
-            background: #111; 
-            border-radius: 12px; 
-            overflow: hidden; 
-            border: 1px solid #444;
-            display: flex; flex-direction: column;
-        }
-        .book-top img { width: 100%; height: 250px; object-fit: cover; display: block; }
-        .book-mid { padding: 20px; text-align: center; flex-grow: 1; }
-        .book-mid h3 { margin: 0; font-size: 1.2rem; color: #fff; }
-        .book-bot { padding: 0; }
-
-        /* TOMBOL BIRU */
-        .btn-blue {
-            display: block; width: 100%; padding: 15px;
-            background: var(--accent); color: white; border: none;
-            font-weight: bold; text-decoration: none; text-align: center;
-            font-size: 1rem; cursor: pointer; transition: 0.3s;
-        }
-        .btn-blue:hover { background: #2980b9; }
-
-        /* --- 3. HALAMAN ISI BUKU (READER) --- */
-        #view-isi { 
-            display: none; 
-            background: #000; 
-            min-height: 100vh; 
-            padding: 20px;
-        }
-        .reader-container { 
-            max-width: 800px; 
-            margin: auto; 
-            background: #000;
-        }
+        /* READER AREA (DIPERBAIKI) */
+        #view-isi { display: none; background: #000; padding: 15px; }
+        .reader-container { max-width: 700px; margin: auto; }
         .isi-konten { 
-            color: #eee; 
-            line-height: 1.8; 
-            font-size: 1.15rem; 
-            white-space: pre-wrap; /* Biar paragraf rapi */
-            text-align: justify;
-            margin-top: 30px;
+            color: #ccc; line-height: 1.7; font-size: 1rem; 
+            white-space: pre-wrap; text-align: left; margin-top: 20px;
         }
-
-        .btn-back { 
-            background: #222; color: white; border: 1px solid #444; 
-            padding: 10px 20px; border-radius: 5px; cursor: pointer; margin-bottom: 20px; 
-        }
-
-        footer { text-align: center; padding: 40px; color: #555; font-size: 0.8rem; }
+        .btn-back { background: #222; color: white; border: 1px solid #444; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin-bottom: 20px; }
     </style>
 </head>
 <body>
 
-<header>
-    <h1>Perpustakaan Yanuxy</h1>
-</header>
+<header><h1>Perpustakaan Yanuxy</h1></header>
 
 <div class="container">
     <div id="view-utama" class="grid-layout"></div>
-
     <div id="view-kategori" style="display: none;">
-        <button class="btn-back" onclick="showUtama()">← Kembali ke Kategori</button>
+        <button class="btn-back" onclick="showUtama()">← Kembali</button>
         <h2 id="judul-kat-aktif"></h2>
         <div id="grid-buku" class="grid-layout"></div>
     </div>
-
     <div id="view-isi">
         <div class="reader-container">
-            <button class="btn-back" onclick="backToKategori()">← Kembali ke Daftar</button>
-            <h1 id="judul-buku-baca" style="color: var(--accent);"></h1>
-            <hr border="1" color="#222">
-            <div id="teks-buku" class="isi-konten">
-                </div>
+            <button class="btn-back" onclick="backToKategori()">← Kembali</button>
+            <h1 id="judul-buku-baca" style="color: var(--accent); font-size: 1.5rem;"></h1>
+            <div id="teks-buku" class="isi-konten"></div>
         </div>
     </div>
 </div>
 
-<footer>© 2026 Yanuxy Novel</footer>
-
+<script src="data.js"></script>
 <script>
-    // DATABASE BUKU
-    const dataPerpustakaan = [
-        { 
-            kategori: "Novel", 
-            gambar: "https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=1000", 
-            buku: [
-                { 
-                    judul: "Sistem Kekayaan Rahasia", 
-                    sampul: "https://via.placeholder.com/300x400/111/fff?text=Sistem+Kekayaan", 
-                    isi: `SISTEM KEKAYAAN RAHASIA\n\nSeri Novel Manhwa dengan Alur Mendalam dan Menarik\n\nKim Do-yun adalah pemuda yang tumbuh dalam keluarga sederhana. Ayahnya, Kim Min-seok, adalah pekerja keras yang tegar meski sakit-sakitan. Ibunya, Park Ji-yeon, bekerja tanpa lelah di pabrik demi menyokong keluarga.\n\nSuatu hari, Do-yun menemukan sebuah sistem misterius yang mengubah hidupnya. Kekayaan yang ia dapatkan bukan hanya tentang angka di rekening, tapi tentang warisan kebaikan.\n\n"KEKAYAAN SESUNGGUHNYA ADALAH WARISAN KEBAIKAN YANG KITA TINGGALKAN."\n\n[Dikutip dari file: sistem kekayaan1.docx]` 
-                },
-                { 
-                    judul: "Sang Penyihir Terakhir", 
-                    sampul: "https://via.placeholder.com/300x400/111/fff?text=Penyihir", 
-                    isi: "Dahulu kala di negeri yang jauh, hiduplah seorang penyihir yang menjaga rahasia kuno..." 
-                }
-            ]
-        },
-        { 
-            kategori: "Programming", 
-            gambar: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1000", 
-            buku: [
-                { 
-                    judul: "Panduan Modding BGA", 
-                    sampul: "https://via.placeholder.com/300x400/111/fff?text=Hardware+Mod", 
-                    isi: "Langkah-langkah teknis melakukan penggantian chipset pada perangkat mobile..." 
-                }
-            ]
-        }
-    ];
-
     function showUtama() {
         document.getElementById('view-utama').style.display = 'grid';
         document.getElementById('view-kategori').style.display = 'none';
         document.getElementById('view-isi').style.display = 'none';
-        
         const grid = document.getElementById('view-utama');
         grid.innerHTML = '';
         dataPerpustakaan.forEach((d, i) => {
-            grid.innerHTML += `
-                <div class="cat-card">
-                    <div class="cat-top">${d.kategori}</div>
-                    <div class="cat-mid"><img src="${d.gambar}"></div>
-                    <div class="cat-bot"><button class="btn-blue" onclick="showKategori(${i})">Jelajahi</button></div>
-                </div>
-            `;
+            grid.innerHTML += `<div class="card"><div class="card-top">${d.kategori}</div><div class="card-mid"><img src="${d.gambar}"></div><button class="btn-blue" onclick="showKategori(${i})">Jelajahi</button></div>`;
         });
     }
 
@@ -176,20 +66,12 @@
         const d = dataPerpustakaan[idx];
         document.getElementById('view-utama').style.display = 'none';
         document.getElementById('view-kategori').style.display = 'block';
-        document.getElementById('judul-kat-aktif').innerText = "Kategori: " + d.kategori;
-
+        document.getElementById('judul-kat-aktif').innerText = d.kategori;
         const grid = document.getElementById('grid-buku');
         grid.innerHTML = '';
         d.buku.forEach((b, bi) => {
-            grid.innerHTML += `
-                <div class="book-card">
-                    <div class="book-top"><img src="${b.sampul}"></div>
-                    <div class="book-mid"><h3>${b.judul}</h3></div>
-                    <div class="book-bot"><button class="btn-blue" onclick="bacaBuku(${idx}, ${bi})">Buka</button></div>
-                </div>
-            `;
+            grid.innerHTML += `<div class="card"><div class="card-mid"><img src="${b.sampul}"></div><div class="card-top">${b.judul}</div><button class="btn-blue" onclick="bacaBuku(${idx}, ${bi})">Buka</button></div>`;
         });
-        window.scrollTo(0,0);
     }
 
     function bacaBuku(ki, bi) {
@@ -201,13 +83,10 @@
         window.scrollTo(0,0);
     }
 
-    function backToKategori() {
-        document.getElementById('view-isi').style.display = 'none';
-        document.getElementById('view-kategori').style.display = 'block';
-    }
+    function backToKategori() { document.getElementById('view-isi').style.display = 'none'; document.getElementById('view-kategori').style.display = 'block'; }
+    function showUtamaBack() { showUtama(); }
 
     showUtama();
 </script>
-
 </body>
 </html>
