@@ -118,5 +118,90 @@
 </header>
 
 <div class="container">
-    <div id="halaman-
+    <div id="halaman-utama" class="book-grid"></div>
+    <div id="halaman-list"></div>
+</div>
+
+<footer>
+    <p>© 2026 Perpustakaan Yanuxy</p>
+</footer>
+
+<script>
+    const dataPerpustakaan = [
+        { 
+            nama: "Novel", 
+            gambar: "https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=1000", 
+            buku: [
+                { judul: "Universal Wealth System", link: "#" },
+                { judul: "Sang Penyihir Terakhir", link: "#" },
+                { judul: "Pedang di Balik Senyum", link: "#" }
+            ]
+        },
+        { 
+            nama: "Programming", 
+            gambar: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1000", 
+            buku: [
+                { judul: "Hardware Modding Guide", link: "#" },
+                { judul: "Belajar JavaScript Dasar", link: "#" }
+            ]
+        },
+        { 
+            nama: "Finansial", 
+            gambar: "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?q=80&w=1000", 
+            buku: [
+                { judul: "Investasi untuk Pemula", link: "#" }
+            ]
+        }
+    ];
+
+    function renderUtama() {
+        const container = document.getElementById('halaman-utama');
+        container.innerHTML = '';
+        dataPerpustakaan.forEach((kat, index) => {
+            container.innerHTML += `
+                <div class="book-card">
+                    <div class="card-header">
+                        <h2>${kat.nama}</h2>
+                    </div>
+                    <div class="card-image-main">
+                        <img src="${kat.gambar}" alt="${kat.nama}">
+                    </div>
+                    <button class="btn-action" onclick="jelajahi(${index})">Jelajahi</button>
+                </div>
+            `;
+        });
+    }
+
+    function jelajahi(index) {
+        const kategori = dataPerpustakaan[index];
+        document.getElementById('halaman-utama').style.display = 'none';
+        const listDiv = document.getElementById('halaman-list');
+        listDiv.style.display = 'block';
         
+        listDiv.innerHTML = `
+            <button class="btn-back" onclick="kembali()">← Kembali</button>
+            <div class="list-container">
+                <div class="list-header">
+                    <h2>Daftar ${kategori.nama}</h2>
+                </div>
+                <div style="padding: 10px 20px;">
+                    ${kategori.buku.map(b => `
+                        <div class="list-item">
+                            <span>${b.judul}</span>
+                            <a href="${b.link}" target="_blank" class="btn-download">Buka PDF</a>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        `;
+    }
+
+    function kembali() {
+        document.getElementById('halaman-utama').style.display = 'grid';
+        document.getElementById('halaman-list').style.display = 'none';
+    }
+
+    renderUtama();
+</script>
+</body>
+</html>
